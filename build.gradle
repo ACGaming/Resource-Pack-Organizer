@@ -1,14 +1,14 @@
-buildscript{
-    repositories{
+buildscript {
+    repositories {
         jcenter()
-        maven{
+        maven {
             name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            url = "https://maven.minecraftforge.net"
         }
     }
-    
-    dependencies{
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+
+    dependencies {
+        classpath 'com.anatawa12.forge:ForgeGradle:2.3-1.0.8'
     }
 }
 
@@ -16,12 +16,12 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 sourceCompatibility = targetCompatibility = 1.8
 
-compileJava{
+compileJava {
     sourceCompatibility = targetCompatibility = 1.8
 }
 
-minecraft{
-    version = "1.12-14.21.1.2387"
+minecraft {
+    version = "1.12.2-14.23.5.2847"
     runDir = "run"
     mappings = "snapshot_20170624"
     makeObfSourceJar = false
@@ -30,7 +30,7 @@ minecraft{
 String modname = ""
 String modver = ""
 
-processResources{
+processResources {
     File info = new File(sourceSets.main.resources.srcDirs.iterator().next(), "mcmod.info")
     def slurp = new groovy.json.JsonSlurper()
     def data = slurp.parseText(info.getText())[0]
@@ -38,6 +38,6 @@ processResources{
     modver = data.version
 }
 
-jar{
-    archiveName = modname+"  MC-"+project.minecraft.version+"  v"+modver+".jar"
+jar {
+    archiveName = modname + "-MC-" + project.minecraft.version + "-v" + modver + ".jar"
 }
